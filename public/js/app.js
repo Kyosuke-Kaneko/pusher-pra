@@ -5290,6 +5290,8 @@ __webpack_require__.r(__webpack_exports__);
     postMessage: function postMessage(message) {
       var _this3 = this;
 
+      // console.log(message);
+      console.log(this.text);
       axios.post("/messages", {
         message: this.text
       }).then(function (response) {

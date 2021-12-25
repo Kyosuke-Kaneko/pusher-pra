@@ -21,19 +21,16 @@ class ChatController extends Controller
 
     public function fetchMessages()
     {
-        // dd(Message::with('user')->get());
         return Message::with('user')->get();
     }
 
     public function sendMessage(Request $request)
     {
         $user = Auth::user();
-        dd($user);
         $message = $user->messages()->create([
             'message' => $request->input('message')
         ]);
         
-        dd($message);
         event(new MessageSent($user, $message));
 
         return ['status' => 'Message Sent!'];

@@ -7,12 +7,10 @@
             </li>
         </ul>
         <input v-model="text" />
-        <button @click="postMessage(text)" :disabled="!textExists">送信</button>
+        <button @click="postMessage" :disabled="!textExists">送信</button>
     </div>
 </template>
  
-<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-
 <script>
 export default {
     data() {
@@ -41,10 +39,10 @@ export default {
                 this.messages = response.data;
             });
         },
-        postMessage(text) {
-            console.log(text);
-            axios.post("/messages", { message: text }).then(response => {
-                console.log(response);
+        postMessage(message) {
+            // console.log(message);
+            console.log(this.text);
+            axios.post("/messages", { message: this.text }).then(response => {
                 this.text = "";
             });
         }
